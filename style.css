@@ -1,11 +1,20 @@
+
 :root{
-  --brand:#000; --bg:#fff; --muted:#536471; --line:#e5e7eb;
-  --layout-max:1040px; --menu-w:156px; --feed-w:500px; --side-w:256px;
+  --brand:#000;
+  --bg:#fff;
+  --muted:#536471;
+  --line:#e5e7eb;
+
+  /* desktop widths */
+  --layout-max:1040px;
+  --menu-w:156px;
+  --feed-w:500px;
+  --side-w:256px;
+
+  /* DM page width */
   --messages-w:520px;
 }
 
-/* 폰트/리셋 */
-@font-face{ font-family:"TwitterChirp"; font-style:normal; font-weight:400 800; font-display:swap; src:local("Chirp"), local("TwitterChirp"); }
 *{ box-sizing:border-box; }
 html,body{ height:100%; margin:0; }
 img{ max-width:100%; height:auto; display:block; }
@@ -15,73 +24,248 @@ ul{ margin:0; padding:0; list-style:none; }
 
 body{
   background:#000; color:#0f1419;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Helvetica,Arial,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic","Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
   font-size:13px;
-  font-family: TwitterChirp,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Helvetica,Arial,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic","Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
-}
-#app{
-  min-height:100vh; max-width:var(--layout-max); margin:0 auto; padding:0 16px;
-  display:flex; gap:20px;
 }
 
-/* 좌측 메뉴 (데스크톱 기본) */
-menu{
-  width:var(--menu-w); flex-shrink:0;
-  display:flex; flex-direction:column; gap:10px; align-items:flex-end;
+#app{
+  min-height:100vh;
+  max-width:var(--layout-max);
+  margin:0 auto;
+  padding:0 16px;
+  display:flex;
+  gap:20px;
 }
-#menubar{ display:flex; flex-direction:column; gap:2px; align-items:flex-end; }
+
+
+menu{
+  width:var(--menu-w);
+  flex-shrink:0;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  align-items:flex-end;
+}
+#menubar{
+  display:flex; flex-direction:column; gap:2px; align-items:flex-end;
+}
 .menu{
-  display:flex; gap:14px; align-items:center;
-  padding:10px 14px; border-radius:999px;
+  display:flex; align-items:center; gap:14px;
+  padding:10px 14px; border-radius:999px; cursor:pointer;
 }
 .menu:hover{ background:#222; }
 .menu i{ font-size:20px; width:26px; text-align:center; }
 .menu-name{ font-size:15px; }
-.menu.active{ font-weight:600; }
+.menu.active{ font-weight:700; }
+.menu.disabled, .menu.disabled i{ color:#9ca3af !important; }
+.menu.disabled{ pointer-events:none; }
 
 #menu-post{
-  margin-top:10px; background:#1d9bf0; color:#fff;
-  display:flex; justify-content:center; align-items:center;
-  font-weight:600; font-size:15px;
-  padding:14px; border-radius:999px;
-  width:100%; max-width:200px;
+  margin-top:10px;
+  background:#1d9bf0; color:#fff;
+  font-weight:700; font-size:15px;
+  padding:14px; border:none; border-radius:999px;
+  width:100%; max-width:200px; cursor:pointer;
 }
 #menu-post:hover{ background:#1a8cd8; }
 
-/* 메인 */
+/* =========================
+   MAIN (shared)
+   ========================= */
 main{
-  flex:1; max-width:var(--feed-w);
-  background:var(--bg); border-radius:10px;
+  flex:1;
+  max-width:var(--feed-w);
+  background:var(--bg);
+  border:1px solid var(--line);
+  border-radius:10px;
+  overflow:hidden;
   min-height:100vh;
 }
-main.messages{ max-width:var(--messages-w); }
+
+/* feed basics (홈/프로필/북마크 공통) */
+#timeline-tabs{ display:flex; justify-content:space-around; border-bottom:1px solid var(--line); }
+#timeline-tabs .tab{
+  flex:1; padding:10px 0; background:transparent; border:none; cursor:pointer;
+  font-size:12.5px; font-weight:700; color:var(--muted); position:relative;
+}
+#timeline-tabs .tab.active{ color:#0f1419; }
+#timeline-tabs .tab.active::after{
+  content:""; position:absolute; left:12px; right:12px; bottom:-1px; height:3px; background:#000; border-radius:3px 3px 0 0;
+}
+
+#compose{ display:flex; gap:10px; align-items:flex-start; padding:10px; border-bottom:1px solid var(--line); }
+.user-avatar{
+  --avatar:none;
+  flex:0 0 32px; height:32px; border-radius:50%;
+  border:1px solid var(--line); display:flex; align-items:center; justify-content:center;
+  color:#6b7280; background:#f1f3f5; background-image:var(--avatar); background-size:cover; background-position:center;
+}
+.user-avatar.has-img i{ opacity:0; }
+.compose-box{ flex:1; display:flex; align-items:center; gap:8px; }
+.compose-box input{ flex:1; border:none; outline:none; font-size:13px; padding:7px 0; }
+.compose-box button{
+  padding:8px 12px; border:none; border-radius:999px; background:var(--brand);
+  color:#fff; font-weight:700; cursor:pointer; font-size:12.5px;
+}
+
+#feed ul{ }
+.tweet{ display:flex; gap:10px; padding:10px; border-bottom:1px solid var(--line); }
+.tweet:last-child{ border-bottom:none; }
+.tweet .user-avatar{ flex:0 0 32px; height:32px; }
+.tweet-content{ flex:1; min-width:0; }
+.username{ font-weight:700; font-size:13.5px; }
+.handle{ color:var(--muted); font-size:12.5px; }
+.text{ margin:4px 0; font-size:13px; line-height:1.55; word-wrap:break-word; }
+.time{ display:block; font-size:11.5px; color:var(--muted); }
+
+.flag-label{ display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:700; color:#374151; margin-bottom:4px; }
+.flag-label i{ font-size:11px; color:#374151; }
+
+.tweet-actions{ display:flex; gap:24px; margin-top:6px; color:var(--muted); font-size:12px; }
+.tweet-actions button{
+  display:flex; align-items:center; gap:6px; border:none; background:transparent; cursor:pointer; color:inherit;
+  padding:6px; border-radius:999px; transition:background .15s ease,color .15s ease;
+}
+.tweet-actions button:hover{ background:#f3f4f6; color:#0f1419; }
+.tweet-actions button[data-action="retweet"].is-active{ color:#22c55e; }
+.tweet-actions button[data-action="like"].is-active{ color:#ef4444; }
+.tweet-actions button[data-action="bookmark"].is-active{ color:#1d9bf0; }
+
+/* 미디어 (홈에서 사용) */
+.tweet-media{ margin-top:7px; border:1px solid var(--line); border-radius:10px; overflow:hidden; background:#000; }
+.tweet-media img{ width:100%; height:auto; object-fit:cover; }
+
+/* 링크/멘션 색 */
+.mention, .tweet-content a{ color:#1D9BF0; font-weight:700; }
 
 /* =========================
-   모바일 전용 패치 (≤540px)
-   - PC/태블릿(>540px)에서는 절대 영향 없음
+   PROFILE (profile.html)
    ========================= */
-@media (max-width:540px){
-  /* 좌측 메뉴: 아이콘 잘림 방지 + 텍스트 숨김 */
-  :root{ --menu-w:64px; }
-  menu{ width:var(--menu-w); }
-  .menu{ justify-content:center; padding:10px 0; }
+main.profile{ overflow:visible; }
+.profile-cover{
+  --cover:none; width:100%; height:190px; background:#e5e7eb;
+  background-image:var(--cover); background-size:cover; background-position:center;
+  border-bottom:1px solid var(--line);
+}
+.profile-header-row{ position:relative; padding:0 10px 8px; height:68px; }
+.profile-header-row .profile-avatar{
+  position:absolute; left:10px; top:-60px; width:118px; height:118px; border-radius:50%;
+  border:4px solid #fff; background:#f1f3f5; background-image:var(--avatar); background-size:cover; background-position:center;
+  display:flex; align-items:center; justify-content:center; color:#6b7280;
+}
+.profile-header-row .profile-avatar.has-img i{ display:none; }
+.profile-header-row .profile-actions{ position:absolute; right:10px; top:10px; display:flex; gap:8px; }
+.btn{ border-radius:999px; font-weight:700; cursor:pointer; }
+.btn.solid{ background:#fff; color:#0f1419; border:1px solid #d1d5db; padding:7px 12px; font-size:12.5px; }
+.btn.ghost{ background:#fff; color:#0f1419; border:1px solid var(--line); width:34px; height:34px; display:flex; align-items:center; justify-content:center; border-radius:50%; }
+
+.profile-info{ padding:8px 10px 10px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.display-name{ font-size:19px; font-weight:800; margin-top:6px; }
+.profile-handle{ color:var(--muted); margin-top:2px; font-size:13px; }
+.bio{ margin-top:8px; font-size:13px; }
+.meta{ display:flex; flex-wrap:wrap; gap:12px; margin-top:8px; color:var(--muted); font-size:12.5px; }
+.follow-stats{ margin-top:6px; font-size:13px; }
+.follow-stats b{ color:var(--brand); }
+
+.profile-tabs{ display:flex; justify-content:space-between; border-bottom:1px solid var(--line); }
+.profile-tabs .tab{ flex:1; padding:9px 0; background:none; border:none; cursor:pointer; color:var(--muted); font-weight:700; font-size:12.5px; position:relative; white-space:nowrap; }
+.profile-tabs .tab.active{ color:var(--brand); }
+.profile-tabs .tab.active::after{ content:""; position:absolute; left:12px; right:12px; bottom:-1px; height:3px; background:#000; border-radius:3px 3px 0 0; }
+
+/* =========================
+   RIGHT SIDEBAR (index/profile/bookmarks)
+   ========================= */
+#sidebar{ width:var(--side-w); display:flex; flex-direction:column; gap:9px; }
+#searchbar{ display:flex; align-items:center; gap:6px; background:#f3f4f6; border-radius:999px; padding:6px 10px; }
+#searchbar input{ border:none; outline:none; background:transparent; flex:1; font-size:12px; }
+#subscribe-card{ padding:9px; border:1px solid var(--line); border-radius:10px; background:#fff; }
+#subscribe-card strong{ font-weight:700; font-size:13.5px; display:block; margin-bottom:6px; }
+#subscribe-card p{ font-size:12px; line-height:1.5; margin-bottom:8px; color:var(--muted); }
+#subscribe-card .btn-subscribe{ padding:6px 10px; border:none; border-radius:999px; background:var(--brand); color:#fff; font-weight:700; cursor:pointer; font-size:12px; }
+#trendbar{ background:#f9fafb; border:1px solid var(--line); border-radius:10px; padding:9px; }
+.trend-title{ font-weight:800; font-size:14px; margin-bottom:6px; }
+.trend{ padding:8px 0; border-bottom:1px solid var(--line); }
+.trend:last-child{ border-bottom:none; }
+.trend-hash{ font-weight:700; font-size:13px; line-height:1.25; }
+.trend-count{ font-size:11.5px; color:var(--muted); margin-top:2px; }
+.trend-more{ color:#1d9bf0; margin-top:7px; cursor:pointer; font-size:12.5px; }
+
+/* =========================
+   MESSAGES (messages.html)
+   ========================= */
+main.messages{
+  width:var(--messages-w);
+  max-width:var(--messages-w);
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#fff;
+  display:flex; gap:0; overflow:hidden;
+}
+
+/* LIST ONLY 레이아웃 */
+.dm-panel{ display:none !important; }
+.dm-list{ width:100% !important; border-right:none !important; display:flex; flex-direction:column; }
+.dm-search{ display:flex; align-items:center; gap:8px; padding:9px; border-bottom:1px solid var(--line); }
+.dm-search input{ flex:1; border:none; outline:none; background:#f3f4f6; border-radius:18px; padding:7px 10px; font-size:13px; }
+.dm-search .icon{ border:none; background:transparent; cursor:pointer; color:var(--muted); }
+.dm-threads{ list-style:none; }
+.thread{ display:flex; gap:9px; padding:9px 10px; cursor:pointer; border-bottom:1px solid var(--line); transition:background .15s ease; }
+.thread:hover{ background:#f3f4f6; }
+.thread.active{ background:#eef2f7; }
+.thread .avatar{
+  --avatar:none; flex:0 0 38px; height:38px; border-radius:50%;
+  border:1px solid var(--line); display:flex; align-items:center; justify-content:center;
+  color:#6b7280; background:#f1f3f5; background-image:var(--avatar); background-size:cover; background-position:center;
+}
+.thread .avatar.has-img i{ opacity:0; }
+.thread .info{ flex:1; min-width:0; }
+.thread .top{ display:flex; justify-content:space-between; font-weight:700; font-size:12.5px; }
+.thread .top time{ color:var(--muted); font-weight:400; font-size:11.5px; }
+.thread .sub{ color:var(--muted); font-size:12.5px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+
+/* DM 페이지 폭과 전체 레이아웃 총폭을 PC에서 맞추기 위한 보정 */
+.sidebar-spacer{
+  flex:0 0 calc(var(--side-w) - (var(--messages-w) - var(--feed-w)));
+  width:calc(var(--side-w) - (var(--messages-w) - var(--feed-w)));
+}
+@media (max-width:1100px){ .sidebar-spacer{ display:none; } }
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+/* 1) <=1100px: 우측 사이드 접기 */
+@media (max-width:1100px){
+  #sidebar{ display:none; }
+  #app{ gap:14px; }
+  :root{ --layout-max: calc(var(--menu-w) + var(--feed-w) + 32px); }
+}
+
+
+@media (max-width:720px){
+  menu{ width:54px; }
   .menu-name{ display:none; }
-  .menu i{ width:auto; text-align:center; font-size:20px; }
-  #menu-post{
-    width:40px; height:40px; padding:0;
-    display:inline-flex; align-items:center; justify-content:center;
-    border-radius:999px; font-size:0;
+  .menu{ justify-content:center; padding:10px 0; }
+  .menu i{ width:auto; text-align:center; }
+}
+
+
+@media (max-width:600px){
+  :root{
+    --layout-max:560px;
+    --menu-w:0px;
+    --feed-w:100vw;
   }
-  #menu-post::before{ content:"+"; font-size:22px; line-height:1; }
+  #app{
+    padding:14px 10px;
+    flex-direction:column;
+    align-items:center;
+  }
+  menu{ display:none; }
 
-  /* 레이아웃 */
-  :root{ --layout-max:560px; --feed-w:100vw; }
-  #app{ padding:14px 10px; flex-direction:column; align-items:center; }
-  menu{ display:none; } /* 모바일에선 좌측 메뉴 숨김 */
-
-  /* 모든 페이지 동일 규칙 → 여백/배경 어긋남 제거 */
+  /* 모든 페이지 공통 폭/여백 */
   main{ width:100%; max-width:560px; margin:0 auto; border-radius:10px; }
   main.messages{ width:100%; max-width:560px; margin:0 auto; border-radius:10px; }
 
-  /* 혹시 남아 있는 보조 여백 요소 제거 */
+  /* DM 여분 여백 제거 */
   .sidebar-spacer{ display:none !important; }
 }
