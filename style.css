@@ -269,3 +269,24 @@ main.messages{
   /* DM 여분 여백 제거 */
   .sidebar-spacer{ display:none !important; }
 }
+/* === FIX: 모바일에서 쪽지 여백/폭 어긋남 제거 === */
+@media (max-width:600px){
+  /* 모든 페이지와 동일한 폭/여백 규칙으로 통일 */
+  main.messages{
+    width: 100% !important;
+    max-width: 560px !important;
+    margin: 0 auto !important;
+    border-radius: 10px; /* 다른 페이지와 동일 */
+  }
+
+  /* DM 페이지에서 남는 보조 여백 요소가 있으면 숨김 */
+  .sidebar-spacer{ display: none !important; }
+}
+
+/* === OPTIONAL: 601~820px에서 좌측 아이콘 잘림 방지(PC에는 영향 없음) === */
+@media (max-width:820px) and (min-width:601px){
+  menu{ width: 64px; }
+  .menu{ justify-content: center; padding: 10px 0; }
+  .menu-name{ display: none; }
+  .menu i{ width: auto; text-align: center; font-size: 20px; }
+}
