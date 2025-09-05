@@ -286,3 +286,52 @@ main.messages{
   margin-left:6px;
   font-size:0.95em;
 }
+
+
+
+
+@media (max-width: 820px){
+  :root{
+
+    --menu-w: 64px;
+  }
+  menu{ width: var(--menu-w); }
+  #menubar{ align-items: center; }               /* 전체를 중앙 정렬 */
+  .menu{
+    justify-content: center;                     /* 아이콘을 정확히 중앙 */
+    padding: 10px 0;                             /* 좌우 패딩을 줄여 베김 방지 */
+  }
+  .menu-name{ display: none; }                   /* 텍스트는 숨김(베김 원인 제거) */
+  .menu i{
+    font-size: 20px;                             /* 아이콘 약간 키움 */
+    width: auto;                                 /* 고정폭 해제로 클리핑 방지 */
+    text-align: center;
+  }
+  /* 글자 대신 + 버튼처럼 보이도록(선택): 모바일에서 '트윗' 버튼이 잘리지 않게 */
+  #menu-post{
+    width: 40px; height: 40px;
+    padding: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 999px;
+    font-size: 0;                                /* 라벨 숨김 */
+  }
+  #menu-post::before{
+    content: "+"; font-size: 22px; line-height: 1;
+  }
+}
+
+
+@media (max-width: 600px){
+
+
+  main.messages{
+    width: 100%;
+    max-width: 560px;        /* 홈/프로필과 동일 상한 */
+    margin: 0 auto;          /* 가운데 정렬 */
+    border-radius: 10px;     /* main 공통과 동일 */
+  }
+
+  .sidebar-spacer{ display: none !important; }
+
+  #app{ padding: 14px 10px; } /* style.css의 모바일 공통과 동일 값으로 고정 */
+}
