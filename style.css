@@ -288,11 +288,12 @@ main.messages{
 }
 
 
+/* === [MOBILE/TABLET PATCH] left menu icon clipping & DM spacing === */
 
-
+/* 1) 820px 이하에서: 좌측 메뉴 아이콘이 잘리지 않도록 아이콘 중심 정렬 + 약간 넓힘 */
 @media (max-width: 820px){
   :root{
-
+    /* 살짝 더 넓게 잡아 아이콘 베김 방지 */
     --menu-w: 64px;
   }
   menu{ width: var(--menu-w); }
@@ -320,10 +321,12 @@ main.messages{
   }
 }
 
-
+/* 2) 600px 이하에서는 기존 설계대로 메뉴를 감추되(이미 정의되어 있음),
+      DM(쪽지) 화면의 여백/배경을 홈/프로필과 완전히 동일하게 맞춤 */
 @media (max-width: 600px){
+  /* 메뉴는 원래 규칙대로 숨김(기존 규칙 유지) */
 
-
+  /* DM 메인 폭을 홈/프로필(main)과 동일한 100%로 통일 */
   main.messages{
     width: 100%;
     max-width: 560px;        /* 홈/프로필과 동일 상한 */
@@ -331,7 +334,9 @@ main.messages{
     border-radius: 10px;     /* main 공통과 동일 */
   }
 
+  /* 레이아웃 총폭 보정용 spacer는 모바일에서 숨김(잔여 여백 차이 제거) */
   .sidebar-spacer{ display: none !important; }
 
+  /* 모바일 공통 패딩을 모든 페이지에서 동일하게 */
   #app{ padding: 14px 10px; } /* style.css의 모바일 공통과 동일 값으로 고정 */
 }
