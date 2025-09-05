@@ -1,7 +1,7 @@
 :root{
   /* 전체 스케일을 전보다 한 단계 작게 */
   --brand:#000; --bg:#fff; --muted:#536471; --line:#e5e7eb;
-  --layout-max:1040px; --menu-w:156px; --feed-w:400px; --side-w:256px;
+  --layout-max:1040px; --menu-w:156px; --feed-w:470px; --side-w:356px;
   --messages-w:420px; /* DM(쪽지) 메인폭 */
 }
 
