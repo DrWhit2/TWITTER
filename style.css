@@ -1,8 +1,8 @@
 :root{
   /* 전체 스케일을 전보다 한 단계 작게 */
   --brand:#000; --bg:#fff; --muted:#536471; --line:#e5e7eb;
-  --layout-max:1040px; --menu-w:156px; --feed-w:500px; --side-w:256px;
-  --messages-w:520px; /* DM(쪽지) 메인폭 */
+  --layout-max:1040px; --menu-w:156px; --feed-w:400px; --side-w:256px;
+  --messages-w:420px; /* DM(쪽지) 메인폭 */
 }
 
 /* 폰트: 가벼운 시스템 폰트 + 전반적 사이즈 축소 */
