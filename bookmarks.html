@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css" />
   <script src="https://kit.fontawesome.com/34e274a1ff.js" crossorigin="anonymous"></script>
 
-  <!-- ✅ 북마크 페이지 전용: 이탤릭 상속 완전 차단(안전패치) -->
+
   <style>
     #app, #app * { font-style: normal !important; }
     .fa, .fas, .far, .fal, .fab, .fa-solid, .fa-regular, .fa-brands { font-style: normal !important; }
@@ -15,7 +15,7 @@
 </head>
 <body>
   <div id="app">
-    <!-- 좌측 메뉴 -->
+
     <menu>
       <section id="menubar">
         <a class="menu" href="index.html"><i class="fas fa-home"></i><p class="menu-name">홈</p></a>
@@ -23,7 +23,7 @@
         <div class="menu disabled"><i class="fas fa-hashtag"></i><p class="menu-name">탐색하기</p></div>
         <a class="menu" href="messages.html"><i class="far fa-envelope"></i><p class="menu-name">쪽지</p></a>
 
-        <!-- ✅ 북마크만 활성(파란 채움 아이콘) -->
+
         <div class="menu active"><i class="fas fa-bookmark" style="color:#1d9bf0;"></i><p class="menu-name">북마크</p></div>
 
         <div class="menu disabled"><i class="fas fa-list"></i><p class="menu-name">리스트</p></div>
@@ -32,16 +32,15 @@
       </section>
     </menu>
 
-    <!-- 메인 -->
     <main>
-      <!-- ⛔️ 모음집 탭 제거, 북마크 버튼만 유지 -->
+
       <nav id="timeline-tabs" role="tablist" aria-label="북마크 상단">
         <button class="tab active" role="tab" aria-selected="true" type="button">북마크</button>
       </nav>
 
       <section id="feed">
         <ul>
-          <!-- 1 -->
+ 
           <li class="tweet">
             <div class="user-avatar has-img" style="--avatar:url('profiles/k10.png')"><i class="far fa-user"></i></div>
             <div class="tweet-content">
@@ -58,20 +57,20 @@
             </div>
           </li>
 
-           <!-- 5 -->
+          
   <li class="tweet">
   <div class="user-avatar has-img" style="--avatar:url('profiles/p2.png')"><i class="far fa-user"></i></div>
   <div class="tweet-content">
     <span class="username">MIRO</span> <span class="handle">@miromata</span>
     <p class="text">화이트 나무위키 보는데 <br>'이마까지 검게 보이는 것은 앞머리 그림자 데포르메와 합쳐진 것.' <br><br>아니 그럼 화이트가 지금 가아라 상태라고?</p>
 
-    <!-- ▼ 트윗 이미지 -->
+
     <figure class="tweet-media" style="--nudge:12px">
       <a href="media/A2.jpg" target="_blank" rel="noopener">
         <img src="media/A2.jpg" alt="화이트 관련 이미지" loading="lazy">
       </a>
     </figure>
-    <!-- ▲ 트윗 이미지 -->
+  
 
     <span class="time">2025년 9월 4일</span>
     <div class="tweet-actions">
@@ -144,13 +143,13 @@
             <div class="tweet-content">
               <span class="username">태민만두</span> <span class="handle">@manmanne</span>
               <p class="text">Why did you kill Tanjiro's family.</p>
-              <!-- ▼ 트윗 이미지 -->
+            
 <figure class="tweet-media">
   <a href="media/G1.png" target="_blank" rel="noopener">
     <img src="media/G1.png" alt="화이트 관련 이미지" loading="lazy">
   </a>
 </figure>
-<!-- ▲ 트윗 이미지 -->
+
               <span class="time">2025년 9월 2일</span>
               <div class="tweet-actions">
                 <button><i class="far fa-comment"></i><span>0</span></button>
@@ -165,7 +164,7 @@
       </section>
     </main>
 
-    <!-- 우측 사이드 -->
+
     <aside id="sidebar">
       <div id="searchbar"><i class="fas fa-search"></i><input type="text" placeholder="검색" /></div>
       <div id="subscribe-card"><strong>Premium 구독하기</strong><p>구독하여 새로운 기능을 이용해 보세요.<br>자격을 충족하는 경우 수익 배분금도 받을 수 있습니다.</p><button class="btn-subscribe" type="button">구독하기</button></div>
@@ -182,7 +181,7 @@
     </aside>
   </div>
 
-  <!-- 공통 JS: 좋아요/북마크 아이콘 채우기 토글 -->
+
   <script>
     document.addEventListener('click', (e)=>{
       const btn = e.target.closest('.tweet-actions button');
