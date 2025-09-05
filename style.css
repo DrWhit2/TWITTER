@@ -55,10 +55,12 @@ main{
 }
 main.messages{ max-width:var(--messages-w); }
 
-
+/* =========================
+   모바일 전용 패치 (≤540px)
+   - PC/태블릿(>540px)에서는 절대 영향 없음
    ========================= */
 @media (max-width:540px){
-
+  /* 좌측 메뉴: 아이콘 잘림 방지 + 텍스트 숨김 */
   :root{ --menu-w:64px; }
   menu{ width:var(--menu-w); }
   .menu{ justify-content:center; padding:10px 0; }
@@ -76,10 +78,10 @@ main.messages{ max-width:var(--messages-w); }
   #app{ padding:14px 10px; flex-direction:column; align-items:center; }
   menu{ display:none; } /* 모바일에선 좌측 메뉴 숨김 */
 
-
+  /* 모든 페이지 동일 규칙 → 여백/배경 어긋남 제거 */
   main{ width:100%; max-width:560px; margin:0 auto; border-radius:10px; }
   main.messages{ width:100%; max-width:560px; margin:0 auto; border-radius:10px; }
 
-
+  /* 혹시 남아 있는 보조 여백 요소 제거 */
   .sidebar-spacer{ display:none !important; }
 }
