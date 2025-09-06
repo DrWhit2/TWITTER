@@ -1,22 +1,17 @@
-<script>
-
-document.addEventListener('click', (e)=>{
+document.addEventListener('click', (e) => {
   const btn = e.target.closest('.tweet-actions button');
-  if(!btn) return;
+  if (!btn) return;
   const action = btn.dataset.action;
-  if(!action) return;
+  if (!action) return;
 
   btn.classList.toggle('is-active');
 
-  if(action === 'bookmark'){
+  // Toggle solid/regular for Font Awesome icons
+  if (action === 'like' || action === 'bookmark') {
     const ic = btn.querySelector('i');
-    if(ic){
+    if (ic) {
       ic.classList.toggle('far');
       ic.classList.toggle('fas');
     }
   }
 });
-
-
-</script>
-
