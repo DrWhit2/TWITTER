@@ -290,3 +290,56 @@ main.messages{
   margin-left:6px;
   font-size:0.95em;
 }
+/* === MOBILE-ONLY OVERRIDE (≤600px) — PC 뷰는 영향 없음 === */
+@media (max-width:600px){
+  /* 레이아웃: 하단 바 높이만큼 바닥 여백 확보 */
+  :root{ --layout-max:560px; --feed-w:100vw; }
+  #app{
+    /* 하단 바 + iOS 세이프에어리어 고려 */
+    padding:14px 10px calc(64px + env(safe-area-inset-bottom, 0px));
+    flex-direction:column; align-items:center;
+  }
+
+  /* 기존: menu가 display:none이었음 → 모바일에선 '하단 고정 바'로 노출 */
+  menu{
+    position:fixed; left:0; right:0; bottom:0; z-index:999;
+    display:block; background:#fff; border-top:1px solid var(--line);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    box-shadow: 0 -6px 24px rgba(0,0,0,.04);
+  }
+  #menubar{
+    /* 세로 스택 → 가로 바 */
+    position:static; top:auto;
+    display:flex; flex-direction:row; justify-content:space-around; align-items:center;
+    gap:0; padding:6px 10px;
+  }
+  .menu{
+    /* 아이콘 중심, 터치 영역 확보 */
+    flex-direction:column; gap:3px;
+    padding:6px 10px; border-radius:8px; font-size:11.5px;
+  }
+  .menu i{ font-size:18px; width:auto; }
+  .menu-name{ display:none; }   /* 아이콘만 */
+  #menu-post{ display:none; }   /* 큰 버튼은 모바일에서 숨김 */
+
+  /* 메인 폭: 화면 가득 */
+  main{ width:100%; max-width:560px; margin:0 auto; }
+  main.messages{ width:100%; max-width:560px; }
+
+  /* 우측 사이드/스페이서 비노출 */
+  #sidebar, .sidebar-spacer{ display:none !important; }
+
+  /* 프로필 헤더 살짝 컴팩트(PC와 다른 시각차 최소화) */
+  .profile-cover{ height:140px; }
+  .profile-header-row{ height:60px; }
+  .profile-header-row .profile-avatar{ top:-50px; width:92px; height:92px; }
+  .profile-info{ padding-top:4px; }
+
+  /* DM 리스트 터치 여백 미세 보정 */
+  .dm-search{ padding:8px; }
+  .thread{ padding:10px 12px; }
+
+  /* 트윗 미디어가 카드 가장자리 넘칠 때의 좌우 여백 보정(현 규칙 유지-보완) */
+  .tweet-media.left{ margin-left:-10px; width:calc(100% + 10px); }
+}
+
