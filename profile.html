@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>poflille – Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://kit.fontawesome.com/34e274a1ff.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="app">
+    <menu>
+      <section id="menubar">
+        <a class="menu" href="index.html"><i class="fas fa-home"></i><p class="menu-name">홈</p></a>
+        <div class="menu active"><i class="far fa-user"></i><p class="menu-name">프로필</p></div>
+        <div class="menu disabled"><i class="fas fa-hashtag"></i><p class="menu-name">탐색하기</p></div>
+        <a class="menu" href="messages.html"><i class="far fa-envelope"></i><p class="menu-name">쪽지</p></a>
+        <a class="menu" href="bookmarks.html"><i class="far fa-bookmark"></i><p class="menu-name">북마크</p></a>
+        <div class="menu disabled"><i class="fas fa-list"></i><p class="menu-name">리스트</p></div>
+        <div class="menu disabled"><i class="fas fa-ellipsis-h"></i><p class="menu-name">더 보기</p></div>
+        <button id="menu-post" type="button">프로필 수정</button>
+      </section>
+    </menu>
+
+    <main class="profile">
+      <div class="profile-cover" style="--cover:url('covers/white3.png')"></div>
+
+      <div class="profile-header-row">
+        <div class="profile-avatar has-img" style="--avatar:url('profiles/white2.png')"><i class="far fa-user"></i></div>
+        <div class="profile-actions">
+          <button class="btn ghost" type="button" title="쪽지 보내기"><i class="far fa-envelope"></i></button>
+          <button class="btn solid" type="button">프로필 수정</button>
+        </div>
+      </div>
+
+      <section class="profile-info">
+        <h1 class="display-name">Dr.화이트</h1>
+        <div class="profile-handle">@white_bot</div>
+        <p class="bio">화이트 비공식 봇입니다. 애증하는 당신. <span class="mention">@gojo_dangerouslove_</span> </p>
+        <ul class="meta"><li><i class="far fa-calendar-alt"></i> 가입일: 2025년 5월</li></ul><br>
+        <div class="follow-stats"><b>7</b> 팔로우 중 · <b>245</b> 팔로워</div><br>
+      </section>
+
+      <nav class="profile-tabs" role="tablist" aria-label="프로필 탭">
+        <button class="tab active" role="tab" aria-selected="true">게시물</button>
+        <button class="tab" role="tab">답글</button>
+        <button class="tab" role="tab">하이라이트</button>
+        <button class="tab" role="tab">아티클</button>
+        <button class="tab" role="tab">미디어</button>
+        <button class="tab" role="tab">마음에 들어요</button>
+      </nav>
+
+      <!-- 타임라인: 네가 준 게시물 그대로 (생략 없이 유지) -->
+      <section id="feed">
+        <ul>
+          <!-- 1) 고정 공지 -->
+          <li class="tweet">
+            <div class="user-avatar has-img" style="--avatar:url('profiles/white2.png')"><i class="far fa-user"></i></div>
+            <div class="tweet-content">
+              <div class="flag-label"><i class="fas fa-thumbtack"></i> 메인에 올림</div><br>
+              <span class="username">Dr.화이트</span> <span class="handle">@white_bot</span>
+              <p class="text">
+                - Dr.white 원작 기반 비공식 수동 봇.<br>
+                - 오스월드에 대한 개인적 해석 많습니다. 지적은 둥글게.<br>
+                - 임자 있으신 분들 건드리는 것도 보는 것도 당하는 것도 싫습니다.<br>
+                - 감정 낭비는 사절. 오는 사람 안 막고 가는 사람 안 잡음.<br>
+                - 뒷주는 말 걸어주면 되게 좋아함.<br>
+              </p>
+              <span class="time">2025년 7월 11일</span>
+              <div class="tweet-actions">
+                <button><i class="far fa-comment"></i><span>0</span></button>
+                <button data-action="retweet"><i class="fas fa-retweet"></i><span>2</span></button>
+                <button data-action="like"><i class="far fa-heart"></i><span>145</span></button>
+                <button data-action="bookmark" class=""><i class="far fa-bookmark"></i><span>8</span></button>
+                <button><i class="fas fa-share"></i></button>
+              </div>
+            </div>
+          </li>
+
+          <!-- 인용구 트윗 -->
+          <li class="tweet">
+            <div class="user-avatar has-img" style="--avatar:url('profiles/white2.png')"><i class="far fa-user"></i></div>
+            <div class="tweet-content">
+              <span class="username">Dr.화이트</span> <span class="handle">@white_bot</span>
+              <p class="text">널 울게 만드는 것들은<br>모두 죽어버렸으면 좋겠어<br><br>| 김우석, &lt;널 울게 만드는 것들&gt;</p>
+              <span class="time">2025년 9월 21일</span>
+              <div class="tweet-actions">
+                <button><i class="far fa-comment"></i><span>0</span></button>
+                <button data-action="retweet"><i class="fas fa-retweet"></i><span>6</span></button>
+                <button data-action="like"><i class="far fa-heart"></i><span>24</span></button>
+                <button data-action="bookmark"><i class="far fa-bookmark"></i><span>3</span></button>
+                <button><i class="fas fa-share"></i></button>
+              </div>
+            </div>
+          </li>
+
+          <!-- 짧은 문장 -->
+          <li class="tweet">
+            <div class="user-avatar has-img" style="--avatar:url('profiles/white2.png')"><i class="far fa-user"></i></div>
+            <div class="tweet-content">
+              <span class="username">Dr.화이트</span> <span class="handle">@white_bot</span>
+              <p class="text">후우... 정말 미치겠군.</p>
+              <span class="time">2025년 9월 19일</span>
+              <div class="tweet-actions">
+                <button><i class="far fa-comment"></i><span>12</span></button>
+                <button data-action="retweet"><i class="fas fa-retweet"></i><span>4</span></button>
+                <button data-action="like"><i class="far fa-heart"></i><span>84</span></button>
+                <button data-action="bookmark"><i class="far fa-bookmark"></i><span>5</span></button>
+                <button><i class="fas fa-share"></i></button>
+              </div>
+            </div>
+          </li>
+
+          <!-- 인용 RT -->
+          <li class="tweet">
+            <div class="user-avatar has-img" style="--avatar:url('profiles/gojo.png')"><i class="far fa-user"></i></div>
+            <div class="tweet-content">
+              <div class="flag-label"><i class="fas fa-retweet"></i> Dr.화이트 님이 재게시함</div><br>
+              <span class="username">Satoru</span> <span class="handle">@gojo_dangerouslove_</span>
+              <p class="text">아가들, 놀고 있는데 미안. 한마디만 할게.<br>보기 싫으면 니가 블락해.<br><br>내 사람 건들지 말고.</p>
+              <span class="time">2025년 9월 18일</span>
+              <div class="tweet-actions">
+                <button><i class="far fa-comment"></i><span>18</span></button>
+                <button data-action="retweet"><i class="fas fa-retweet"></i><span>103</span></button>
+                <button data-action="like"><i class="far fa-heart"></i><span>35</span></button>
+                <button data-action="bookmark"><i class="far fa-bookmark"></i><span>2</span></button>
+                <button><i class="fas fa-share"></i></button>
+              </div>
+            </div>
+          </li>
+
+          <!-- 멘션 공지 -->
+          <li class="tweet">
+            <div class="user-avatar has-img" style="--avatar:url('profiles/white2.png')"><i class="far fa-user"></i></div>
+            <div class="tweet-content">
+              <span class="username">Dr.화이트</span> <span class="handle">@white_bot</span>
+              <p class="text">* 고죠 사토루( <span class="mention">@gojo_dangerouslove_</span> )와 연인페어가 되었습니다.<br>화이트가 마법을 통해 주술회전 세계관으로 트립했다는 설정으로 이어갑니다.</p>
+              <span class="time">2025년 9월 18일</span>
+              <div class="tweet-actions">
+                <button><i class="far fa-comment"></i><span>3</span></button>
+                <button data-action="retweet"><i class="fas fa-retweet"></i><span>324</span></button>
+                <button data-action="like"><i class="far fa-heart"></i><span>25</span></button>
+                <button data-action="bookmark"><i class="far fa-bookmark"></i><span>9</span></button>
+                <button><i class="fas fa-share"></i></button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <!-- 우측 사이드 -->
+    <aside id="sidebar">
+      <div id="searchbar"><i class="fas fa-search"></i><input type="text" placeholder="검색" /></div>
+      <div id="subscribe-card">
+        <strong>Premium 구독하기</strong>
+        <p>구독하여 새로운 기능을 이용해 보세요.<br>자격을 충족하는 경우 수익 배분금도 받을 수 있습니다.</p>
+        <button class="btn-subscribe" type="button">구독하기</button>
+      </div>
+      <div id="trendbar">
+        <div class="trend-title">나를 위한 트렌드</div>
+        <div class="trend"><div class="trend-hash">#보이즈2플래닛</div><div class="trend-count">게시물 24.2만</div></div>
+        <div class="trend"><div class="trend-hash">#원영아_행운은늘네편이야</div><div class="trend-count">게시물 8.7만</div></div>
+        <div class="trend"><div class="trend-hash">#과거그림과_최근그림을_비교</div><div class="trend-count">게시물 3.1만</div></div>
+        <div class="trend"><div class="trend-hash">#09그림트친소</div><div class="trend-count">게시물 1.9만</div></div>
+        <div class="trend"><div class="trend-hash">#음기그림</div><div class="trend-count">게시물 7,235</div></div>
+        <div class="trend"><div class="trend-hash">#캐붕</div><div class="trend-count">게시물 6,021</div></div>
+        <div class="trend-more">더 보기</div>
+      </div>
+    </aside>
+  </div>
+
+<script>
+document.addEventListener('click', (e)=>{
+  const btn = e.target.closest('.tweet-actions button');
+  if(!btn) return;
+  const action = btn.dataset.action;
+  if(!action) return;
+
+  btn.classList.toggle('is-active');
+
+  // 아이콘 채우기 토글: 좋아요/북마크
+  if (action === 'like' || action === 'bookmark') {
+    const ic = btn.querySelector('i');
+    if (ic) { ic.classList.toggle('far'); ic.classList.toggle('fas'); }
+  }
+});
+</script>
+</html>
